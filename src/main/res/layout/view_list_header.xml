@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/text"
+        android:text="@string/today_news"
+        android:layout_width="@dimen/DIMEN_300PX"
+        android:layout_height="@dimen/DIMEN_60PX"
+        android:textSize="@dimen/DIMEN_18PX"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/DIMEN_12PX"/>
+</LinearLayout>

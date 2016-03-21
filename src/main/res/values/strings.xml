@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ktZhihuDaily</string>
+    <string name="open_drawer">open_drawer</string>
+    <string name="close_drawer">close_drawer</string>
+    <string name="history">历史记录</string>
+    <string name="favourite">收藏夹</string>
+    <string name="today_news">今日热文</string>
+    <string name="comment">条评论</string>
+</resources>
