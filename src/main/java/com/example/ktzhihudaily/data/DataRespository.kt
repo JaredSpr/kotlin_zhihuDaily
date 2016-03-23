@@ -1,7 +1,7 @@
 package com.example.ktzhihudaily.data
 
 import com.example.ktzhihudaily.Utils.RxBus
-import com.example.ktzhihudaily.Utils.modifyDate
+import com.example.ktzhihudaily.Utils.applySchedulers
 import com.example.ktzhihudaily.event.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
@@ -37,8 +37,7 @@ object DataRespository{
 
     fun getLastestNews(){
         service.getLatestNews()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applySchedulers<NewsData>())
                 .subscribe(object: Observer<NewsData> {
                     override fun onNext(p0: NewsData?) {
                         newsData = p0
@@ -56,8 +55,7 @@ object DataRespository{
     }
     fun getBeforeNews(){
         service.getBeforeNews(newsData?.date!!)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applySchedulers<NewsData>())
                 .subscribe(object:Observer<NewsData>{
                     override fun onNext(p0: NewsData?) {
                         newsData?.date = p0?.date!!
@@ -77,8 +75,7 @@ object DataRespository{
     }
     fun getNewsDetail(id:Int){
         service.getNewsDetail(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applySchedulers<NewsDetail>())
                 .subscribe(object : Observer<NewsDetail>{
                     override fun onNext(p0: NewsDetail?) {
                         newsDetail = p0
@@ -95,8 +92,7 @@ object DataRespository{
     }
     fun getNewsExtra(id:Int){
         service.getNewsExtra(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applySchedulers<NewsExtra>())
                 .subscribe(object : Observer<NewsExtra> {
                     override fun onNext(p0: NewsExtra?) {
                         newsExtra = p0
@@ -114,8 +110,7 @@ object DataRespository{
     }
     fun getShortComments(){
         service.getShortComments(newsDetail?.id!!)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applySchedulers<Comments>())
                 .subscribe (object : Observer<Comments>{
                     override fun onNext(p0: Comments?) {
                         shortComments = p0
@@ -134,8 +129,7 @@ object DataRespository{
 
     fun getLongComments(){
         service.getLongComments(newsDetail?.id!!)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applySchedulers<Comments>())
                 .subscribe (object : Observer<Comments>{
                     override fun onNext(p0: Comments?) {
                         longComments = p0

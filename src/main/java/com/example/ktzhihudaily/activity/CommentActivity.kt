@@ -20,11 +20,15 @@ class CommentActivity : SlideBackActivity() {
         setContentView(R.layout.activity_comments)
         toolBar.setNavigationOnClickListener{ NavUtils.navigateUpFromSameTask(this)}
         toolBar.title = DataRespository?.newsExtra?.comments.toString() + getString(R.string.comment)
-        RxBus.getDefault()?.toObservable()?.subscribe(object: Action1<Any> {
-            override fun call(p0: Any?) {
-                if(p0 is RxEvents.ShortCommentsEvent)
-                    initList()
-            }
+//        RxBus.getDefault()?.toObservable()?.subscribe(object: Action1<Any> {
+        //            override fun call(p0: Any?) {
+        //                if(p0 is RxEvents.ShortCommentsEvent)
+        //                    initList()
+        //            }
+        //        })
+        RxBus.getDefault()?.toObservable()?.subscribe({p0->
+            if(p0 is RxEvents.ShortCommentsEvent)
+                initList()
         })
     }
     fun initList(){
